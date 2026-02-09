@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
-import { Shipment } from '../../entities/shipment.schema'; 
+import { Shipment } from '../../entities/shipment.schema';
 
 @Injectable()
 export class ShipmentsService {
@@ -14,8 +14,10 @@ export class ShipmentsService {
   }
 
   async getActiveCountAsync(): Promise<number> {
-    return await this.shipmentModel.countDocuments({ 
-      status: { $ne: 'DELIVERED' } 
-    }).exec();
+    return await this.shipmentModel
+      .countDocuments({
+        status: { $ne: 'DELIVERED' },
+      })
+      .exec();
   }
 }

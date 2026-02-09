@@ -23,9 +23,9 @@ import { ShipmentsService } from './logistics/services/shipments/shipments.servi
     }),
     PrometheusModule.register({
       global: true,
-      path: '/metrics',
+      path: 'metrics',
       defaultMetrics: {
-        enabled: false, 
+        enabled: false,
       },
     }),
     MongooseModule.forRootAsync({
@@ -40,14 +40,18 @@ import { ShipmentsService } from './logistics/services/shipments/shipments.servi
       { name: TransitLeg.name, schema: TransitLegSchema },
     ]),
   ],
-  controllers: [LogisticsController, MetricsController, BusinessMetricsController],
+  controllers: [
+    LogisticsController,
+    MetricsController,
+    BusinessMetricsController,
+  ],
   providers: [
     {
       provide: APP_GUARD,
       useClass: ApiKeyGuard,
     },
     {
-      provide: 'MY_CUSTOM_REGISTRY', 
+      provide: 'MY_CUSTOM_REGISTRY',
       useValue: new Registry(),
     },
     LogisticsService,

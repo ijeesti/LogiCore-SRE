@@ -1,14 +1,14 @@
 import { Controller, Get } from '@nestjs/common';
 import { ApiTags, ApiOperation } from '@nestjs/swagger';
-import { ShipmentsService } from '../services/shipments/shipments.service'; 
- 
-@ApiTags('System Monitoring')
+import { ShipmentsService } from '../services/shipments/shipments.service';
+
+@ApiTags('Business Analytics')
 @Controller('metrics')
 export class BusinessMetricsController {
   constructor(private readonly shipmentsService: ShipmentsService) {}
 
   @ApiOperation({ summary: 'Customized Business KPIs (JSON)' })
-  @Get('business') 
+  @Get('business')
   async getBusinessMetrics() {
     const total = await this.shipmentsService.getTotalCountAsync();
     const active = await this.shipmentsService.getActiveCountAsync();
